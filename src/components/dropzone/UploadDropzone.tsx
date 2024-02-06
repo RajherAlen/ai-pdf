@@ -10,17 +10,7 @@ import { useRouter } from 'next/navigation';
 
 export const UploadDropzone = () => {
     const { uploadProgress, setUploadProgress, startSimulatedProgress } = useSimulatedUploadProgress();
-    const { startUpload } = useUploadThing('pdfUploader', {
-        onClientUploadComplete: () => {
-            alert('uploaded successfully!');
-        },
-        onUploadError: () => {
-            alert('error occurred while uploading');
-        },
-        onUploadBegin: () => {
-            alert('upload has begun');
-        },
-    });
+    const { startUpload } = useUploadThing('pdfUploader');
 
     const router = useRouter();
     const { toast } = useToast();

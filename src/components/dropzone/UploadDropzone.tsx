@@ -1,5 +1,5 @@
 import Dropzone from 'react-dropzone';
-import { CloudIcon, File } from 'lucide-react';
+import { CloudIcon, File, Loader2 } from 'lucide-react';
 import { Progress } from '../ui/progress';
 import { useState } from 'react';
 import useSimulatedUploadProgress from '@/hooks/useSimulatedUploadProgress';
@@ -85,7 +85,17 @@ export const UploadDropzone = () => {
 
                             {isUploading ? (
                                 <div className="mx-auto mt-4 w-full max-w-xs">
-                                    <Progress value={uploadProgress} className="h-1 w-full bg-zinc-200" />
+                                    <Progress
+                                        indicatorColor={uploadProgress === 100 ? 'bg-green-500' : ''}
+                                        value={uploadProgress}
+                                        className="h-1 w-full bg-zinc-200"
+                                    />
+                                    {uploadProgress === 100 ? (
+                                        <div className="flex items-center justify-center gap-1 pt-2 text-center text-sm text-zinc-700">
+                                            <Loader2 className="h-3 w-3 animate-spin" />
+                                            Redirecting...
+                                        </div>
+                                    ) : null}
                                 </div>
                             ) : null}
 

@@ -7,7 +7,7 @@ import React from 'react';
 // async only works on server components
 const page = async () => {
     const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = getUser();
 
     if (!user || !user.id) {
         // The ?origin=dashboard part is likely used to keep track of

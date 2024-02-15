@@ -7,7 +7,7 @@ import { z } from 'zod';
 const appRouter = router({
     authCallback: publicProcedure.query(async () => {
         const { getUser } = getKindeServerSession();
-        const user = await getUser();
+        const user = getUser();
 
         if (!user || !user.id || !user.email) {
             throw new TRPCError({ code: 'UNAUTHORIZED' });
@@ -40,7 +40,7 @@ const appRouter = router({
 
         if (!file) return { status: 'PENDING' as const };
 
-        return { status: file.uploadStatus };
+        return { status: file.uploadStatus }
     }),
     getUserFiles: privateProcedure.query(async ({ ctx }) => {
         const { userId } = ctx;

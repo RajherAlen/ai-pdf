@@ -15,7 +15,7 @@ const page = async ({ params }: PageProps) => {
     const { fileId } = params;
 
     const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = getUser();
 
     if (!user || !user.id) {
         redirect(`/auth-callback?origin=dashboard/${fileId}`);
@@ -42,7 +42,7 @@ const page = async ({ params }: PageProps) => {
                 </div>
 
                 <div className="flex-[0.75] shrink-0 border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
-                    <ChatWrapper fileId={fileId} />
+                    <ChatWrapper fileId={file.id} />
                 </div>
             </div>
         </div>
